@@ -1,34 +1,38 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../config.js";
+import {sequelize} from "../config.js"; 
 
 class Match extends Model {}
 
-Match.init(
-  {
-    team_1: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    team_2: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    venue: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
+Match.init({
+  match_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    // Define model options
-    sequelize, // Pass the Sequelize instance
-    modelName: "Match", // Set model name
-    tableName: "Match" // Set table name (optional, Sequelize will use pluralized version of model name by default)
+  team_1: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  team_2: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  date: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  venue: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  status: {
+    type: DataTypes.STRING(20),
+    allowNull: false
   }
-);
+}, {
+  sequelize,
+  modelName: 'Match',
+  tableName: 'matches'
+});
 Match.sync({ force: false });
-// Export the Match model
-export { Match };
+export default Match;

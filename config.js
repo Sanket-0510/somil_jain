@@ -1,23 +1,15 @@
+import 'dotenv/config';
 import { Sequelize, DataTypes, Model } from "sequelize";
 const config =  {
     development: {
-      username: 'somil_jain',
-      password: 'somil_password',
-      database: 'somil',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       host: 'localhost',
       dialect: 'postgres',
-      port: 5432, // Default PostgreSQL port
-      logging: true, // Set to true if you want to see SQL queries in the console
-    },
-    production: {
-        username: 'somil_jain',
-        password: 'somil_password',
-        database: 'somil',
-        host: 'localhost',
-        dialect: 'postgres',
-        port: 5432, // Default PostgreSQL port
-        logging: true, // Set to true if you want to see SQL queries in the console
-    },
+      port: 5432, 
+      logging: true, 
+    }
   };
   
 

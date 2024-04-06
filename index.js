@@ -5,6 +5,7 @@ const app = express();
 const PORT = 8000;
 import {authRouter} from "./routes/auth.js";
 import { matchRouter } from "./routes/match.js";
+import { playerRouter } from "./routes/player.js";
 app.use(bodyParser.json());
 
 
@@ -18,4 +19,5 @@ app.get("/", (req,res)=>{
 })
 app.use("/api/admin", authRouter);
 app.use("/api/matches",matchRouter);
+app.use("/api/players", playerRouter)
 

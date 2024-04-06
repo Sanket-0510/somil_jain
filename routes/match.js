@@ -1,9 +1,13 @@
 import express from 'express'
 const matchRouter = express.Router()
-import {createMatchController} from "../controller/match.js"
+import {createMatch, getMatchSchedules, getMatchDetails} from "../controller/match.js"
 import { auth } from '../middlewares/auth.js'
 
+matchRouter.get("/:match_id", getMatchDetails)
 
-matchRouter.post("/create",auth, createMatchController)
+matchRouter.get("/", getMatchSchedules)
+
+matchRouter.post("/",auth, createMatch)
+
 
 export {matchRouter}

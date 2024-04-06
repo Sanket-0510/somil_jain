@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Sequelize, DataTypes, Model } from "sequelize";
-import {sequelize} from "../config.js";
+import { sequelize } from "../config.js";
 
 
 class User extends Model {
@@ -16,6 +16,11 @@ class User extends Model {
 
 
 User.init({
+  user_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
     username: {
       type: DataTypes.STRING,
       allowNull: false
@@ -37,7 +42,7 @@ User.init({
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'User',
+    tableName: 'users',
     hooks: {
       async beforeCreate(user) {
         const hashedPassword = await bcrypt.hash(user.password, 10);
